@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    [Migration("20241118135031_firstss")]
-    partial class firstss
+    [Migration("20241121102347_first")]
+    partial class first
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -30,6 +30,9 @@ namespace E_Commerce.Migrations
                     b.Property<Guid>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ProductCount")
+                        .HasColumnType("int");
 
                     b.Property<decimal>("TotalAmount")
                         .HasPrecision(18, 2)
@@ -52,16 +55,24 @@ namespace E_Commerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<decimal>("Amount")
+                        .HasPrecision(18, 2)
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<Guid>("CartId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.HasKey("CartItemId");
+
+                    b.HasIndex("CartId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("CartItems");
                 });
@@ -87,6 +98,10 @@ namespace E_Commerce.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("OrderStatus")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -97,6 +112,9 @@ namespace E_Commerce.Migrations
                     b.Property<Guid>("ProductId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("TotalAmount")
                         .HasPrecision(18, 2)
                         .HasColumnType("decimal(18,2)");
@@ -105,6 +123,10 @@ namespace E_Commerce.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
 
                     b.ToTable("Orders");
                 });
@@ -176,7 +198,7 @@ namespace E_Commerce.Migrations
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             IsBlock = true,
-                            Password = "$2a$11$HDBairuw5xeOq1MZb6YWieWiU8vaRS1v9z6ljsBiKtFGsQUIjzZgS",
+                            Password = "$2a$11$1k4vP4wthI/Q0XqjAoncXO/dOCmTPkgmsTOCr4.T7obopQAs89a2y",
                             Role = "Admin",
                             UserName = "Admin"
                         },
@@ -186,7 +208,7 @@ namespace E_Commerce.Migrations
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin1@gmail.com",
                             IsBlock = true,
-                            Password = "$2a$11$uBR0JwT/4f8bm/kSTYRt8uI2wjJgzZctoMBhXFlbcQHAQLLOzF4zu",
+                            Password = "$2a$11$ar8AjC4E.5xuvF5egy9rq.jOjCbGtiIzV2nUd8hGTqwwhSyR4ZwM2",
                             Role = "Admin",
                             UserName = "Admin1"
                         });
@@ -222,6 +244,44 @@ namespace E_Commerce.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("E_Commerce.Models.CartItem", b =>
+                {
+                    b.HasOne("E_Commerce.Models.Cart", "Cart")
+                        .WithMany("CartItems")
+                        .HasForeignKey("CartId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_Commerce.Models.Product", "product")
+                        .WithMany("cartItem")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Cart");
+
+                    b.Navigation("product");
+                });
+
+            modelBuilder.Entity("E_Commerce.Models.Order", b =>
+                {
+                    b.HasOne("E_Commerce.Models.Product", "Product")
+                        .WithMany("orders")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("E_Commerce.Models.User", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Product");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("E_Commerce.Models.Product", b =>
                 {
                     b.HasOne("E_Commerce.Models.Category", "Category")
@@ -235,11 +295,18 @@ namespace E_Commerce.Migrations
 
             modelBuilder.Entity("E_Commerce.Models.WhishList", b =>
                 {
-                    b.HasOne("E_Commerce.Models.User", null)
+                    b.HasOne("E_Commerce.Models.User", "User")
                         .WithMany("WhishLists")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("E_Commerce.Models.Cart", b =>
+                {
+                    b.Navigation("CartItems");
                 });
 
             modelBuilder.Entity("E_Commerce.Models.Category", b =>
@@ -247,10 +314,19 @@ namespace E_Commerce.Migrations
                     b.Navigation("Products");
                 });
 
+            modelBuilder.Entity("E_Commerce.Models.Product", b =>
+                {
+                    b.Navigation("cartItem");
+
+                    b.Navigation("orders");
+                });
+
             modelBuilder.Entity("E_Commerce.Models.User", b =>
                 {
                     b.Navigation("Cart")
                         .IsRequired();
+
+                    b.Navigation("Orders");
 
                     b.Navigation("WhishLists");
                 });

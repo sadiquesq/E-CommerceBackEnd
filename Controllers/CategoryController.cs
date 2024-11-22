@@ -1,5 +1,6 @@
 ﻿using E_Commerce.DTOs.CategoryDTO;
-using E_Commerce.Services;
+using E_Commerce.DTOs.ProductDTO;
+using E_Commerce.Services.CategoryServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

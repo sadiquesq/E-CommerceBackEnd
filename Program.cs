@@ -1,6 +1,14 @@
 
 using E_Commerce.Controllers;
-using E_Commerce.Services;
+using E_Commerce.Mapper;
+using E_Commerce.middleware;
+using E_Commerce.Services.AdminServices;
+using E_Commerce.Services.AuthSerivces;
+using E_Commerce.Services.CartServices;
+using E_Commerce.Services.CategoryServices;
+using E_Commerce.Services.OrderServices;
+using E_Commerce.Services.ProductServices;
+using E_Commerce.Services.WhishlistServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -73,8 +81,12 @@ namespace E_Commerce
             builder.Services.AddDbContext<MainDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddScoped<IAdminService, AdminService>();
-            builder.Services.AddScoped<IAuthService, AuthService>();
+            builder.Services.AddTransient<IAuthService, AuthService>();
             builder.Services.AddScoped<ICategoryServices,CategoryServices>();
+            builder.Services.AddTransient<ICartServices,CartServices>();
+            builder.Services.AddScoped<IProductServices, ProductServices>();
+            builder.Services.AddScoped<IWhishlistServices, WhishlistServices>();
+            builder.Services.AddScoped<IOrderServices, OrderServices>();
 
 
             builder.Services.AddAutoMapper(typeof(MainAutoMapper));
@@ -94,6 +106,7 @@ namespace E_Commerce
            
             app.UseAuthorization();
             app.UseAuthorization();
+            app.UseMiddleware<Customiddleware>();
 
 
             app.MapControllers();

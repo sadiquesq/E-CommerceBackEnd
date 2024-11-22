@@ -1,7 +1,7 @@
 ﻿using E_Commerce.DTOs;
 using E_Commerce.DTOs.UserDTO;
 using E_Commerce.Models;
-using E_Commerce.Services;
+using E_Commerce.Services.AuthSerivces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
@@ -33,15 +33,23 @@ namespace E_Commerce.Controllers
 
         public async Task<IActionResult> SignUp(UserInsertDto user)
         {
-            var n = await _authService.CheckRegister(user);
-            if(!n)
+            try
             {
-                return BadRequest("user already exist");
+                var n = await _authService.CheckRegister(user);
+                if (!n)
+                {
+                    return BadRequest("user already exist");
+                }
+
+                var nv = await _authService.Rgister(user);
+                return Ok("sucessfully registered");
+
             }
+            catch (Exception ex)
+            {
+                return StatusCode(500, "Internal server eroor" + ex);
 
-             _authService.Rgister(user);
-            return Ok();
-
+            }
         }
 
 

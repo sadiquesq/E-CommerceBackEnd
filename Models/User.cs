@@ -19,6 +19,8 @@ namespace E_Commerce.Models
 
         [Required]
         [MinLength(8)]
+        [RegularExpression(@"^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$",
+        ErrorMessage = "Password must contain at least one letter, one number, and one special character.")]
         public string Password { get; set; }
 
         public bool IsBlock { get; set; } = true;
@@ -29,10 +31,11 @@ namespace E_Commerce.Models
         public DateTime CreatedDate { get; set; }= DateTime.Now;
 
 
-        public virtual Cart Cart { get; set; }
+        public  Cart Cart { get; set; }
 
-        public virtual ICollection<WhishList> WhishLists { get; set; }
+        public  ICollection<WhishList> WhishLists { get; set; }
 
+        public ICollection<Order> Orders { get; set; }
 
     }
 }

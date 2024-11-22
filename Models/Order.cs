@@ -1,24 +1,37 @@
-﻿namespace E_Commerce.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace E_Commerce.Models
 {
     public class Order
     {
-
+        [Required]
         public Guid OrderId { get; set; }
+
+        [Required]
 
         public Guid UserId { get; set; }
 
+        [Required]
+
         public Guid ProductId { get; set; }
 
-        public DateTime Orderdate { get; set; }
+        [Required]
+        public int Quantity { get; set; }
 
-        public string OrderStatus { get; set; }
+        [Required]
+
+        public string Address { get; set; }
+
+        public DateTime Orderdate { get; set; }= DateTime.Now;
+
+        public string OrderStatus { get; set; } = "shipping";
 
         public  decimal TotalAmount { get; set; }
 
 
-        //public User User { get; set; }
+        public User User { get; set; }
 
-        //public Product Product { get; set; }
+        public Product Product { get; set; }
 
     }
 }

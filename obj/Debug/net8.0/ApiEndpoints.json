@@ -74,6 +74,74 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "AddTocart",
+    "RelativePath": "api/CartContoller/AddToCart",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dto",
+        "Type": "E_Commerce.DTOs.cartItemDTO.CartItemDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "CheckOut",
+    "RelativePath": "api/CartContoller/CheckOut",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "DeleteCartItems",
+    "RelativePath": "api/CartContoller/DeleteCartItems",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "CartItemid",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "ViewCart",
+    "RelativePath": "api/CartContoller/ViewCart",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "ViewCartItems",
+    "RelativePath": "api/CartContoller/ViewCartItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
     "ContainingType": "E_Commerce.Controllers.CategoryController",
     "Method": "AddCategory",
     "RelativePath": "api/Category/AddCategory",
@@ -93,6 +161,263 @@
     "ContainingType": "E_Commerce.Controllers.CategoryController",
     "Method": "getAllCategory",
     "RelativePath": "api/Category/getAllCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "DeleteOder",
+    "RelativePath": "api/Order/DeleteOder{orderid}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderid",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "PlaceOrder",
+    "RelativePath": "api/Order/PlaceOrder",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "address",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pid",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "Qut",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "TotalRevenue",
+    "RelativePath": "api/Order/TotalRevenue",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "UpdateOder",
+    "RelativePath": "api/Order/UpdateOder{orderid}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "orderid",
+        "Type": "System.Guid",
+        "IsRequired": true
+      },
+      {
+        "Name": "orderstatus",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "ViewAllOrders",
+    "RelativePath": "api/Order/ViewAllOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.OrderController",
+    "Method": "ViewOrders",
+    "RelativePath": "api/Order/ViewOrders",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "AddProducts",
+    "RelativePath": "api/Product/Addproducts",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dTO",
+        "Type": "E_Commerce.DTOs.ProductDTO.ProductDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "DeleteProduct",
+    "RelativePath": "api/Product/deleteproduct{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "EditProduct",
+    "RelativePath": "api/Product/EditproductDetails",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "dTO",
+        "Type": "E_Commerce.DTOs.ProductDTO.ProductViewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "GetProductById",
+    "RelativePath": "api/Product/GetProductById{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "SearchProduct",
+    "RelativePath": "api/Product/SearchProduct{productname}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productname",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "ViewBycategory",
+    "RelativePath": "api/Product/ViewByCategory",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Categoryname",
+        "Type": "System.String",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "ViewProducts",
+    "RelativePath": "api/Product/viewproducts",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.ProductController",
+    "Method": "ViewProducts",
+    "RelativePath": "api/Product/viewproductsBypagination",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "paginationParams",
+        "Type": "E_Commerce.DTOs.Pagination.paginationParams",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.WhishListController",
+    "Method": "AddToWhishList",
+    "RelativePath": "api/WhishList/AddToWhishlist",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "productid",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.WhishListController",
+    "Method": "DeleteWhishList",
+    "RelativePath": "api/WhishList/DeleteWhishList",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Wid",
+        "Type": "System.Guid",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.WhishListController",
+    "Method": "ViewWhishList",
+    "RelativePath": "api/WhishList/ViewWhishList",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,

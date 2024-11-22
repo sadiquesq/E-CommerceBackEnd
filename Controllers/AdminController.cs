@@ -1,5 +1,5 @@
 ﻿using E_Commerce.DTOs.UserDTO;
-using E_Commerce.Services;
+using E_Commerce.Services.AdminServices;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -44,12 +44,19 @@ namespace E_Commerce.Controllers
 
         public async Task<IActionResult>  GetUserById(Guid id)
         {
-            var us= await _AdminService.GetUserById(id);
-            if (us.UserName == null)
+            try
             {
-                return BadRequest("invalid id");
+                var us = await _AdminService.GetUserById(id);
+                if (us.UserName == null)
+                {
+                    return BadRequest("invalid id");
+                }
+                return Ok(us);
             }
-            return Ok(us);
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
 
 
@@ -60,8 +67,19 @@ namespace E_Commerce.Controllers
 
         public async Task<IActionResult> BlockOrUnblock(Guid id)
         {
-            var us =await _AdminService.BlockOrUnblock(id);
-            return StatusCode(us.StatusCode,us.Message);
+            try
+            {
+                var us = await _AdminService.BlockOrUnblock(id);
+                return StatusCode(us.StatusCode, us.Message);
+            }
+             catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
         }
+
+
+
+       
     }
 }

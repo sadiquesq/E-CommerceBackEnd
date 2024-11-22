@@ -1,28 +1,25 @@
 ﻿using AutoMapper;
 using E_Commerce.Controllers;
 using E_Commerce.DTOs.CategoryDTO;
+using E_Commerce.DTOs.ProductDTO;
 using E_Commerce.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration.EnvironmentVariables;
 
-namespace E_Commerce.Services
+namespace E_Commerce.Services.CategoryServices
 {
 
-    public interface ICategoryServices
-    {
-        Task<bool> AddCategory(CategoryInsertDto cdo);
-
-        Task<List<CaregoryViewDto>> Viewcategorys();
-    }
-    public class CategoryServices:ICategoryServices
+  
+    public class CategoryServices : ICategoryServices
     {
 
         private readonly MainDbContext _mainDbContext;
         private readonly IMapper _mapper;
 
-        public CategoryServices(MainDbContext mainDbContext,IMapper mapper)
+        public CategoryServices(MainDbContext mainDbContext, IMapper mapper)
         {
-            _mainDbContext= mainDbContext;
-            _mapper= mapper;
+            _mainDbContext = mainDbContext;
+            _mapper = mapper;
         }
 
 
@@ -30,13 +27,13 @@ namespace E_Commerce.Services
         {
             try
             {
-                var  de= await _mainDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryName == cdo.CategoryName);
-                if(de!=null)
+                var de = await _mainDbContext.Categories.FirstOrDefaultAsync(c => c.CategoryName == cdo.CategoryName);
+                if (de != null)
                 {
                     return false;
                 }
                 var ne = _mapper.Map<Category>(cdo);
-                 await _mainDbContext.Categories.AddAsync(ne);
+                await _mainDbContext.Categories.AddAsync(ne);
                 await _mainDbContext.SaveChangesAsync();
                 return true;
             }
@@ -60,6 +57,7 @@ namespace E_Commerce.Services
                 throw new Exception(ex.Message);
             }
         }
+
 
     }
 }

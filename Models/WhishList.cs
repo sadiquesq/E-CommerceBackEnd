@@ -9,6 +9,7 @@
 
         public Guid ProductId { get; set; }
 
+        public User User { get; set; }
 
 
     }

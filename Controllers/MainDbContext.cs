@@ -38,7 +38,7 @@ namespace E_Commerce.Controllers
                     UserId = Guid.Parse("a1f5d5da-e94d-44f1-a8c3-b60f42101a01"),
                     UserName = "Admin",
                     Email = "admin@gmail.com",
-                    Password = BCrypt.Net.BCrypt.HashPassword("12345678"),
+                    Password = BCrypt.Net.BCrypt.HashPassword("admin@1234"),
                     Role = "Admin",
                     IsBlock = true,
                     CreatedDate = new DateTime(2024, 1, 1)  
@@ -48,17 +48,18 @@ namespace E_Commerce.Controllers
                     UserId = Guid.Parse("e5b7d7f4-23f5-4d5f-bd85-dba98b93723b"),
                     UserName = "Admin1",
                     Email = "admin1@gmail.com",
-                    Password = BCrypt.Net.BCrypt.HashPassword("12345678aa"),
+                    Password = BCrypt.Net.BCrypt.HashPassword("admin1@1234"),
                     Role = "Admin",
                     IsBlock = true,
                     CreatedDate = new DateTime(2024, 1, 1)  
                 }
             });
-
             modelBuilder.Entity<User>()
                 .HasOne(e => e.Cart)
                 .WithOne(e => e.User)
                 .HasForeignKey<Cart>(e => e.UserId);
+
+
 
 
             //Category
@@ -81,6 +82,9 @@ namespace E_Commerce.Controllers
                 .HasOne(e =>e.Category)
                 .WithMany(e =>e.Products)
                 .HasForeignKey(e => e.CategoryId);
+          
+            
+
 
 
             //Cart
@@ -90,12 +94,29 @@ namespace E_Commerce.Controllers
             modelBuilder.Entity<Cart>()
               .Property(e => e.TotalAmount)
               .HasPrecision(18, 2);
+            modelBuilder.Entity<Cart>()
+                 .HasOne(c => c.User)
+                 .WithOne(u => u.Cart)
+                 .HasForeignKey<Cart>(c => c.UserId);
+
 
 
             //cartitem
 
             modelBuilder.Entity<CartItem>()
                 .HasKey(e => e.CartItemId);
+            modelBuilder.Entity<CartItem>()
+             .Property(e => e.Amount)
+             .HasPrecision(18, 2);
+            modelBuilder.Entity<CartItem>()
+                .HasOne(e =>e.Cart)
+                .WithMany(e =>e.CartItems)
+                .HasForeignKey(e =>e.CartId);
+            modelBuilder.Entity<CartItem>()
+                .HasOne(e => e.product)
+                .WithMany(e => e.cartItem)
+                .HasForeignKey(e => e.ProductId);
+
 
 
 
@@ -106,10 +127,24 @@ namespace E_Commerce.Controllers
             modelBuilder.Entity<Order>()
                 .Property(e => e.TotalAmount)
                 .HasPrecision(18, 2);
+            modelBuilder.Entity<Order>()
+                .HasOne( e => e.User)
+                .WithMany(e =>e.Orders)
+                .HasForeignKey(e=>e.UserId);
+            modelBuilder.Entity<Order>()
+                .HasOne(e=>e.Product)
+                .WithMany(e =>e.orders)
+                .HasForeignKey(e=>e.ProductId);
 
 
+            //whishlist
 
-
+            modelBuilder.Entity<WhishList>()
+                .HasKey(e =>e.WhishlistId);
+            modelBuilder.Entity<WhishList> ()
+                .HasOne(e =>e.User)
+                .WithMany(e => e.WhishLists)
+                .HasForeignKey (e =>e.UserId);
 
 
 
