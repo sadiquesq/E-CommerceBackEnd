@@ -27,6 +27,8 @@ namespace E_Commerce.Services.WhishlistServices
             try
             {
                 var n = await _mainDbContext.Products.FirstAsync(e => e.ProductId == productid);
+
+
                 var m = _mainDbContext.WhishList.Where(e => e.ProductId == productid && e.UserId == userid);
                 if (n == null && m != null)
                 {

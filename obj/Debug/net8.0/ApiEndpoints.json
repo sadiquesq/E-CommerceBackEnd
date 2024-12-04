@@ -83,8 +83,8 @@
     "Parameters": [
       {
         "Name": "dto",
-        "Type": "E_Commerce.DTOs.cartItemDTO.CartItemDto",
-        "IsRequired": true
+        "Type": "System.Guid",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -135,6 +135,16 @@
     "ContainingType": "E_Commerce.Controllers.CartContoller",
     "Method": "ViewCartItems",
     "RelativePath": "api/CartContoller/ViewCartItems",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "E_Commerce.Controllers.CartContoller",
+    "Method": "ViewFullCart",
+    "RelativePath": "api/CartContoller/ViewFullCart",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -269,9 +279,29 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dTO",
-        "Type": "E_Commerce.DTOs.ProductDTO.ProductDTO",
-        "IsRequired": true
+        "Name": "ProductName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Nullable\u00601[[System.Decimal, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "stock",
+        "Type": "System.Nullable\u00601[[System.Int32, System.Private.CoreLib, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "CategoryId",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "image",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -301,9 +331,29 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "dTO",
-        "Type": "E_Commerce.DTOs.ProductDTO.ProductViewDto",
-        "IsRequired": true
+        "Name": "id",
+        "Type": "System.Guid",
+        "IsRequired": false
+      },
+      {
+        "Name": "ProductName",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Price",
+        "Type": "System.Decimal",
+        "IsRequired": false
+      },
+      {
+        "Name": "stock",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "img",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []

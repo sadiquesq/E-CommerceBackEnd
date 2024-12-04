@@ -172,3 +172,8 @@ C:\Users\offic\source\repos\E-Commerce\E-Commerce\obj\Debug\net8.0\refint\E-Comm
 C:\Users\offic\source\repos\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.pdb
 C:\Users\offic\source\repos\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.genruntimeconfig.cache
 C:\Users\offic\source\repos\E-Commerce\E-Commerce\obj\Debug\net8.0\ref\E-Commerce.dll
+C:\Users\offic\source\repos\E-Commerce\E-Commerce\obj\Debug\net8.0\E-Commerce.sourcelink.json
+C:\Users\offic\source\repos\E-Commerce\E-Commerce\bin\Debug\net8.0\Newtonsoft.Json.dll
+C:\Users\offic\source\repos\E-Commerce\E-Commerce\bin\Debug\net8.0\BouncyCastle.Crypto.dll
+C:\Users\offic\source\repos\E-Commerce\E-Commerce\bin\Debug\net8.0\Razorpay.dll
+C:\Users\offic\source\repos\E-Commerce\E-Commerce\bin\Debug\net8.0\E-Commerce.staticwebassets.runtime.json

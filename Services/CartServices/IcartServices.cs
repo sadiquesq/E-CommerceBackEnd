@@ -5,7 +5,7 @@ namespace E_Commerce.Services.CartServices
 {
     public interface ICartServices
     {
-        Task<bool> AddItem(Guid usedId, CartItemDto dto);
+        Task<bool> AddItem(Guid usedId, Guid dto);
         Task<List<CartItemviewDto>> ViewCartItem(Guid id);
 
         Task<bool> DeleteItem(Guid userId, Guid uid);
@@ -13,6 +13,9 @@ namespace E_Commerce.Services.CartServices
         Task<CartViewDto> ViewCart(Guid id);
 
         Task<bool> Checkout(Guid userId, string address);
+
+
+        Task<fullCart<CartItemviewDto>>  fullCart(Guid userId);
 
     }
 }

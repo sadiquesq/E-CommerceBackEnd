@@ -1,4 +1,5 @@
-﻿using E_Commerce.DTOs.WhishListDto;
+﻿using E_Commerce.DTOs.UserDTO;
+using E_Commerce.DTOs.WhishListDto;
 
 namespace E_Commerce.Services.WhishlistServices
 {

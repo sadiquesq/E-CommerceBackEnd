@@ -43,25 +43,26 @@ namespace E_Commerce.Services.CartServices
 
 
 
-        public async Task<bool> AddItem(Guid userId, CartItemDto item)
+        public async Task<bool> AddItem(Guid userId, Guid item)
         {
 
             try
             {
                 var cart = await _mainDbContext.carts.FirstOrDefaultAsync(e => e.UserId == userId);
 
-                var x = _mainDbContext.Products.FirstOrDefault(e => e.ProductId == item.ProductId);
-                var res = _mainDbContext.CartItems.FirstOrDefault(e => e.ProductId == item.ProductId && e.CartId == cart.CartId);
+                var x = _mainDbContext.Products.FirstOrDefault(e => e.ProductId == item);
+                var res = _mainDbContext.CartItems.FirstOrDefault(e => e.ProductId == item && e.CartId == cart.CartId);
+
                 if (res != null)
                 {
-                    res.Quantity += item.Quantity;
+                    res.Quantity = res.Quantity + 1;
                     _mainDbContext.CartItems.Update(res);
                     await _mainDbContext.SaveChangesAsync();
                 }
                 else
                 {
-
                     var n = _mapper.Map<CartItem>(item);
+                    n.Quantity +=n.Quantity+1;
                     n.CartId = cart.CartId;
                     n.Amount = x.Price * n.Quantity;
                     await _mainDbContext.CartItems.AddAsync(n);
@@ -166,6 +167,19 @@ namespace E_Commerce.Services.CartServices
         }
 
 
+        public async Task<fullCart<CartItemviewDto>> fullCart(Guid userId)
+        {
+            var cart = await _mainDbContext.carts.FirstOrDefaultAsync(e => e.UserId == userId);
+            var cartitems = await _mainDbContext.CartItems.Where(e => e.CartId == cart.CartId).Include(e => e.product).ToListAsync();
+            var m = _mapper.Map<List<CartItemviewDto>>(cartitems);
+            return new fullCart<CartItemviewDto> 
+            { 
+                Items=m,
+                TotalItems=cart.ProductCount,
+                TotalAmount=cart.TotalAmount
+              };
+
+        }
 
 
 

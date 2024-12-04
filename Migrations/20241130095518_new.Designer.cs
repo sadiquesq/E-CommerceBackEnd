@@ -4,6 +4,7 @@ using E_Commerce.Controllers;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace E_Commerce.Migrations
 {
     [DbContext(typeof(MainDbContext))]
-    partial class MainDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241130095518_new")]
+    partial class @new
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -145,10 +148,6 @@ namespace E_Commerce.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int>("stock")
                         .HasColumnType("int");
 
@@ -199,7 +198,7 @@ namespace E_Commerce.Migrations
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin@gmail.com",
                             IsBlock = true,
-                            Password = "$2a$11$xATqaeDFdXgFn2pW1sHtu.5A3pLCDSEVFQn6sZBH8KpEZbXXNA0eW",
+                            Password = "$2a$11$kW.1yERkoyEjjKnqI2Lse.ggQXDLQagn8Zb1Pymtmb6Da1qn8QDAK",
                             Role = "Admin",
                             UserName = "Admin"
                         },
@@ -209,7 +208,7 @@ namespace E_Commerce.Migrations
                             CreatedDate = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Email = "admin1@gmail.com",
                             IsBlock = true,
-                            Password = "$2a$11$HAXArI6aW2sWAqt6VPl58u1mKU8.EbxOJNKQHqD5IocVvscfoYfGK",
+                            Password = "$2a$11$7mxTX6kmIamohkRSYvxydOfDxsWZIvMNlCGdKCW5.vGyyg1x6PwQa",
                             Role = "Admin",
                             UserName = "Admin1"
                         });

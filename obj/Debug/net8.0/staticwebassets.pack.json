@@ -1,0 +1,41 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\offic\\source\\repos\\E-Commerce\\E-Commerce\\wwwroot\\upload\\product\\1d041c6b-7904-4d99-ba79-508d6e6da61a.jpeg",
+      "PackagePath": "staticwebassets\\upload\\product\\1d041c6b-7904-4d99-ba79-508d6e6da61a.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\offic\\source\\repos\\E-Commerce\\E-Commerce\\wwwroot\\upload\\product\\6d84286c-4d33-4430-b116-7cd14d79ffdc.png",
+      "PackagePath": "staticwebassets\\upload\\product\\6d84286c-4d33-4430-b116-7cd14d79ffdc.png"
+    },
+    {
+      "Id": "C:\\Users\\offic\\source\\repos\\E-Commerce\\E-Commerce\\wwwroot\\upload\\product\\WhatsApp Image 2024-11-28 at 2.46.38 PM.jpeg",
+      "PackagePath": "staticwebassets\\upload\\product\\WhatsApp Image 2024-11-28 at 2.46.38 PM.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\offic\\source\\repos\\E-Commerce\\E-Commerce\\wwwroot\\upload\\product\\c3128a43-f5e7-4a76-b65c-b1b87ec95804.jpeg",
+      "PackagePath": "staticwebassets\\upload\\product\\c3128a43-f5e7-4a76-b65c-b1b87ec95804.jpeg"
+    },
+    {
+      "Id": "C:\\Users\\offic\\source\\repos\\E-Commerce\\E-Commerce\\wwwroot\\upload\\product\\e5028c30-1783-4e05-b0d5-0f107ab6b08f.jpeg",
+      "PackagePath": "staticwebassets\\upload\\product\\e5028c30-1783-4e05-b0d5-0f107ab6b08f.jpeg"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.E-Commerce.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.E-Commerce.props",
+      "PackagePath": "build\\E-Commerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.E-Commerce.props",
+      "PackagePath": "buildMultiTargeting\\E-Commerce.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.E-Commerce.props",
+      "PackagePath": "buildTransitive\\E-Commerce.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

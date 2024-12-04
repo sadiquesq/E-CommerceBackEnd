@@ -43,7 +43,7 @@ namespace E_Commerce.Controllers
         [Authorize(Roles = "User")]
         [HttpPost("AddToCart")]
 
-        public async Task<IActionResult> AddTocart([FromBody] CartItemDto dto)
+        public async Task<IActionResult> AddTocart(Guid dto)
         {
             try
             {
@@ -136,7 +136,23 @@ namespace E_Commerce.Controllers
         }
 
 
-       
+        [Authorize(Roles = "User")]
+        [HttpGet("ViewFullCart")]
+
+
+        public async Task<IActionResult> ViewFullCart()
+        {
+            try
+            {
+                var usedId = Guid.Parse(HttpContext.Items["UserId"].ToString());
+                var res = await _cartServices.fullCart(usedId);
+                return Ok(res);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, ex.Message);
+            }
+        }
 
     }
 }

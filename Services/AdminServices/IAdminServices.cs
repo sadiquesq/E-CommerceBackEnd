@@ -8,7 +8,7 @@ namespace E_Commerce.Services.AdminServices
         Task<ApiRespones<UserDTO>> GetAllUsers();
         Task<UserDTO> GetUserById(Guid id);
 
-        Task<Blocked> BlockOrUnblock(Guid Id);
+        Task<Result> BlockOrUnblock(Guid Id);
 
 
     }

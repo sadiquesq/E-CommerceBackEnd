@@ -69,26 +69,26 @@ namespace E_Commerce.Services.AdminServices
         }
 
 
-        public async Task<Blocked> BlockOrUnblock(Guid id)
+        public async Task<Result> BlockOrUnblock(Guid id)
         {
             try
             {
                 var us = await _dbContext.Users.SingleOrDefaultAsync(e => e.UserId == id);
                 if (us == null)
                 {
-                    return new Blocked { StatusCode = 404, Message = "user is not found" };
+                    return new Result { StatusCode = 404, Message = "user is not found" };
                 }
                 if (us.IsBlock)
                 {
                     us.IsBlock = false;
                     await _dbContext.SaveChangesAsync();
-                    return new Blocked { StatusCode = 200, Message = "user is blocked" };
+                    return new Result { StatusCode = 200, Message = "user is blocked" };
                 }
                 else
                 {
                     us.IsBlock = true;
                     await _dbContext.SaveChangesAsync();
-                    return new Blocked { StatusCode = 200, Message = "user is unblocked" };
+                    return new Result { StatusCode = 200, Message = "user is unblocked" };
                 }
             }
             catch (Exception ex)

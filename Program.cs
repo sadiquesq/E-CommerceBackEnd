@@ -2,6 +2,7 @@
 using E_Commerce.Controllers;
 using E_Commerce.Mapper;
 using E_Commerce.middleware;
+using E_Commerce.Models;
 using E_Commerce.Services.AdminServices;
 using E_Commerce.Services.AuthSerivces;
 using E_Commerce.Services.CartServices;
@@ -41,6 +42,8 @@ namespace E_Commerce
                     ValidateAudience = false
                 };
             });
+
+            builder.Services.Configure<RazorpaySettings>(builder.Configuration.GetSection("Razorpay"));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -100,6 +103,7 @@ namespace E_Commerce
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseStaticFiles();
 
             app.UseHttpsRedirection();
 

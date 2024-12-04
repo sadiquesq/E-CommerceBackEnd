@@ -25,11 +25,11 @@ namespace E_Commerce.Controllers
         [Authorize(Roles = "Admin")]
         [HttpPost("Addproducts")]
 
-        public async Task<IActionResult> AddProducts(ProductDTO dTO)
+        public async Task<ActionResult> AddProducts( [FromForm]ProductDTO dTO, IFormFile image)
         {
             try
             {
-                var p = await _productservices.AddProduct(dTO);
+                var p = await _productservices.AddProduct(dTO,image);
                 if (!p)
                 {
                     return BadRequest("product already exict");
@@ -46,11 +46,11 @@ namespace E_Commerce.Controllers
 
         [Authorize(Roles = "Admin")]
         [HttpPut("EditproductDetails")]
-        public async Task<IActionResult> EditProduct([FromBody] ProductViewDto dTO)
+        public async Task<IActionResult> EditProduct(Guid id, [FromForm] productview1 dTO, IFormFile img)
         {
             try
             {
-                var s =await _productservices.EditProduct( dTO);
+                var s =await _productservices.EditProduct(id, dTO,img);
                 if(!s)
                 {
                     return StatusCode(404, "product notfound");
